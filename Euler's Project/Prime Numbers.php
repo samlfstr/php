@@ -9,7 +9,7 @@ for($i = 2; $i <= $testing_number; $i){
     if($testing_number % $i == 0){
         break;
     }
-    if(i == j){
+    if(i == testing_number){
         echo i;
     }
 }
