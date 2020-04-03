@@ -1,5 +1,5 @@
 // Pour une quelconque nombre
-
+1. Hatalı kod kopyalama ürünü
 $testing_number = 0;
 
 for($i = 2; $i <= $testing_number; $i){
@@ -13,7 +13,7 @@ for($i = 2; $i <= $testing_number; $i){
         echo i;
     }
 }
-
+2. Düzeltilmiş kod
 const BR = "<br>";
 $total = 1;
 for($i = 2; $i<=20; $i++) {
