@@ -1,5 +1,4 @@
 Warning : For the practice perpuses solution is hard-coded.
-
 <!DOCTYPE>
 <html lang="tr">
 <head>
@@ -17,21 +16,44 @@ $digits = array(7,3,1,6,7,1,7,6,5,3,1,3,3,0,6,2,4,9,1,9,2,2,5,1,1,9,6,7,4,4,2,6,
 $listff = array();
 $replace = 0;
 $precedent = 0;
-for($i = 0; $i < 997; $i++){
-    $firstfour = $digits['0'];
-    $firstfour = $firstfour.$digits['1'].$digits['2'].$digits['3'];
-    $precedent = $firstfour;
-    $listff[$i] = $firstfour;
+$listFmultiplication = array();
+
+for($i = 0; $i < 988; $i++){
+    // $firstfour = reset($digits);
+    $fisrtthirteen = reset($digits);
+    //$firstfour = $firstfour.$digits['1'].$digits['2'].$digits['3'];
+    $fisrtthirteen = $fisrtthirteen.$digits[1].$digits[2].$digits[3].$digits[4] .$digits[5].$digits[6].$digits[7].$digits[8].$digits[9].$digits[10].$digits[11].$digits[12];
+    //$precedent = $firstfour;
+    $precedent = $fisrtthirteen;
+    //$listff[$i] = $firstfour;
+    $listff[$i] = $fisrtthirteen;
     array_shift($digits);
     //echo $firstfour . BR;
 }
 
-sort($listff);
+function multFnum($val){
+    $single = 1;
+    $rest = $val;
+    while($rest!=0)
+    {
+        $single *= $rest % 10;
+        $rest = intval($rest/10);
+    }
+    return $single;
+}
 
-echo "Biggest 4 digit number is " . end($listff);
-echo "Biggest 13 digit number is ". end($listff);
+foreach ($listff as $item) {
+    array_push($listFmultiplication, multFnum($item));
+}
 
+sort($listFmultiplication);
 
+//echo "Biggest 4 digit number is " . end($listff) . BR;
+//echo "Biggest 13 digit number is ". end($listff) . BR;
+
+foreach ($listFmultiplication as $item) {
+    echo $item . BR;
+}
 
 ?>
 
