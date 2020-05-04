@@ -22,6 +22,26 @@ function permute($R, $n)
     return $per;
 }
 
+function combination($R, $n)
+{
+    $com = 0;
+
+    if ($R <= 0 and $n <= 0) return 0;
+    if ($R == 0 and $n >= 0 or $n == $R) {
+        return factorial($n);
+    }
+    if ($n == 0) return 1;
+    if ($n > $R){
+        // nC-R n!/(n-R)!*R!
+        $Rfac = factorial($R);
+        $nMinusR = factorial($n-$R);
+        $Rfac*=$nMinusR;
+        $com = factorial($n) / $Rfac;
+    }
+    return $com;
+}
+
+
 function factorial($x)
 {
     if ($x == 0) return 1;
@@ -36,16 +56,4 @@ function factorial($x)
         return $x;
     }
 }
-
-
-echo permute(0,4).br; // 24
-echo permute(5,0).br; // 1
-echo permute(3,4).br; // 4
-echo permute(3,3).br; // 6
-echo permute(2,5); // 10
-
-
-
-
-
 
