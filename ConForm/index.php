@@ -6,15 +6,44 @@ $errors = array();
 $required = array();
 $expected = array();
 
+// send buttun is clicked
 if (isset($_POST['send'])) {
 
+    // populate arrays with area names
     $required = array('name', 'email', 'comment');
     $expected = array('name', 'email', 'comment');
 
+    #region Headers
+    $headers = array();
+
+    // this is where i receive incoming emails
+    $receiver = "Samuel Foster <samlfstr@gmail.com>";
+    // subject
+    $subject = 'mail from online form';
+    // it should be a single string with no newline caracters
+    $string = 'Feed back';
+    // it's not the email submitted from the post an email from my own domain
+    $headers [] = "From : samlfstr@gmail.com";
+
+    /* Additionnal headers
+     * $headers [] = "Cc: another@exmple.com";
+     */
+
+    // type regulation
+    $heardrs [] = "Content-type : text/plein; Charset=Utf-8;";
+
+    // with an -f at the beginning some mail motor requires some don't
+    $authorised = "-fsamlfstr@gmail.com";
+    #endregion
+
     require "process_mail.php";
 
-}
+    /*if ($mailsend) {
+        header('Location: thanks.php');
+        exit;
+    }*/
 
+}
 
 ?>
 
@@ -32,6 +61,12 @@ if (isset($_POST['send'])) {
 </head>
 <body>
 
+
+<?php if ($_POST and ($suspect or isset($errors['mail-error']))) : ?>
+	<p style="text-align: center"> Sorry your message cound't be send! </p>
+<?php elseif ($missing or $errors) : ?>
+	<p style="text-align: center"> Please check the required fields.</p>
+<?php endif; ?>
 <form method="post" action="<?php htmlentities($_SERVER['PHP_SELF']) ?>">
 
 	<p style="text-align: center">
@@ -55,7 +90,7 @@ if (isset($_POST['send'])) {
 			<input type="email" name="email" id="Email"
                 <?php
                 if ($missing or $errors) {
-                    echo 'value="' .htmlentities($email). '"';
+                    echo 'value="' . htmlentities($email) . '"';
                 }
                 ?>>
 		</label>
@@ -67,7 +102,7 @@ if (isset($_POST['send'])) {
             <?php endif ?>
 			<textarea name="comment" id="Comment">
 				<?php if ($missing or $errors)
-					echo htmlentities($comment);
+                    echo htmlentities($comment);
                 ?>
 			</textarea>
 		</label>
