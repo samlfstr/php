@@ -1,5 +1,5 @@
 <?php
-
+// Some additionnal information
 
 class SecondClass
 {
