@@ -1,3 +1,5 @@
+
+// this is a test for git bash
 $primelist = array();
 fileToarray('primes', $primelist);
 
